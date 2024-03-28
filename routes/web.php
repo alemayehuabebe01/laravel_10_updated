@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,30 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+   
+    // we use this  for feach all the data from the database 
+    $user = DB::select('select * from users');
+
+    //let create the new table
+    // $users = DB::insert('insert into users(name,email,password) values(?,?,?)',[
+    // 'ALexs',
+    // 'alexsa@gmail.com',
+    // 'password'
+    
+    // ]);
+
+    //how to update the data table in laravel
+
+    // $affected = DB::update(
+    //     "update users set name = 'alexsa' where id=2");
+
+    //here if we are to delete data
+
+    // $deleteData = DB::delete("delete from users where id = 2");
+    dd($user);
+
+
 });
 
 Route::get('/dashboard', function () {
