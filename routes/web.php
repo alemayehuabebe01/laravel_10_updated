@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Profile\UserPhotoController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
@@ -16,10 +17,10 @@ use Illuminate\Support\Facades\DB;
 */
 
 Route::get('/', function () {
-    // return view('welcome');
+    return view('welcome');
    
     // we use this  for feach all the data from the database 
-    $user = DB::select('select * from users');
+    // $user = DB::select('select * from users');
 
     //let create the new table
     // $users = DB::insert('insert into users(name,email,password) values(?,?,?)',[
@@ -37,7 +38,7 @@ Route::get('/', function () {
     //here if we are to delete data
 
     // $deleteData = DB::delete("delete from users where id = 2");
-    dd($user);
+    // dd($user);
 
 
 });
@@ -49,6 +50,7 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile/user_Photo', [UserPhotoController::class, 'update'])->name('profile.photo');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 

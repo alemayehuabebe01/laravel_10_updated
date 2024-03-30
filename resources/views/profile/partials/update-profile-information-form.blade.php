@@ -7,6 +7,7 @@
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
             {{ __("Update your account's profile information and email address.") }}
         </p>
+      
     </header>
 
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
@@ -16,6 +17,12 @@
     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
+
+        <div>
+            <x-input-label for="name" value="User_Image" />
+            <x-text-input id="user_image" name="user_image" type="file" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        </div>
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
