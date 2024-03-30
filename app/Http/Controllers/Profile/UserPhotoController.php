@@ -7,7 +7,13 @@ use Illuminate\Http\Request;
 
 class UserPhotoController extends Controller
 {
-    public function update(){
-        return('Alemayehu abebe');
+    public function update(Request $request){
+
+        
+    $validated = $request->validate([
+        'user_image' => 'required',
+        
+    ]);
+        dd($request->all());
     }
 }
